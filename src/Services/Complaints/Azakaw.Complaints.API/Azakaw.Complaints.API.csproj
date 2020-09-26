@@ -4,5 +4,17 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Code.Library.Application" Version="2.12.1" />
+    <PackageReference Include="Code.Library.AspNetCore" Version="2.12.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer" Version="4.1.1" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Azakaw.Complaints.Domain\Azakaw.Complaints.Domain.csproj" />
+    <ProjectReference Include="..\Azakaw.Complaints.Infrastructure\Azakaw.Complaints.Infrastructure.csproj" />
+  </ItemGroup>
+
 
 </Project>

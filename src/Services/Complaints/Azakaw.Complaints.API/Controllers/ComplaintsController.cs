@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Azakaw.Complaints.API.Application.Commands;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
@@ -9,7 +10,7 @@ namespace Azakaw.Complaints.API.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class ComplaintsController : ControllerBase
+    public class ComplaintsController : ApiControllerBase
     {
         private readonly ILogger<ComplaintsController> _logger;
 
@@ -18,10 +19,15 @@ namespace Azakaw.Complaints.API.Controllers
             _logger = logger;
         }
 
-        [HttpGet]
-        public ActionResult Get()
+        [Route("")]
+        [HttpPost]
+        public async Task<ActionResult> CreateComplaint([FromBody] CreateComplaintCommand createComplaintCommand, ApiVersion apiVersion)
         {
-            throw new NotImplementedException();
+            var newComplaintId = await Mediator.Send(createComplaintCommand);
+
+            return CreatedAtAction(nameof(GetComplaint), new { complaintId = newComplaintId, version = apiVersion.ToString() }, new { id = newComplaintId });
+        }
+
         }
     }
 }
