@@ -7,8 +7,8 @@ using Microsoft.Extensions.Logging;
 
 namespace Azakaw.Complaints.API.Controllers
 {
-    [ApiController]
-    [Route("[controller]")]
+    [ApiVersion("1.0")]
+    [Route("v{version:apiVersion}/[controller]")]
     public class ComplaintsController : ApiControllerBase
     {
         private readonly IComplaintQueries _complaintQueries;
@@ -20,8 +20,7 @@ namespace Azakaw.Complaints.API.Controllers
             _complaintQueries = complaintQueries;
         }
 
-        [Route("")]
-        [HttpPost]
+        [HttpPost("", Name = nameof(CreateComplaint))]
         public async Task<ActionResult> CreateComplaint([FromBody] CreateComplaintCommand createComplaintCommand, ApiVersion apiVersion)
         {
             var newComplaintId = await Mediator.Send(createComplaintCommand);
