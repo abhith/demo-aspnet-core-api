@@ -1,8 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Azakaw.Complaints.API.Application.Commands;
+using Azakaw.Complaints.API.Application.Queries;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
@@ -12,11 +11,13 @@ namespace Azakaw.Complaints.API.Controllers
     [Route("[controller]")]
     public class ComplaintsController : ApiControllerBase
     {
+        private readonly IComplaintQueries _complaintQueries;
         private readonly ILogger<ComplaintsController> _logger;
 
-        public ComplaintsController(ILogger<ComplaintsController> logger)
+        public ComplaintsController(ILogger<ComplaintsController> logger, IComplaintQueries complaintQueries)
         {
             _logger = logger;
+            _complaintQueries = complaintQueries;
         }
 
         [Route("")]
@@ -28,6 +29,17 @@ namespace Azakaw.Complaints.API.Controllers
             return CreatedAtAction(nameof(GetComplaint), new { complaintId = newComplaintId, version = apiVersion.ToString() }, new { id = newComplaintId });
         }
 
+        [HttpGet("{complaintId}", Name = nameof(GetComplaint))]
+        public async Task<ActionResult> GetComplaint(Guid complaintId)
+        {
+            var cashbackRequest = await _complaintQueries.GetComplaintByIdAsync(complaintId);
+
+            if (cashbackRequest == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(cashbackRequest);
         }
     }
 }

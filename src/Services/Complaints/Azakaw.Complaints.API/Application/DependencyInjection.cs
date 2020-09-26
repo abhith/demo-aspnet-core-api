@@ -14,6 +14,7 @@ namespace Azakaw.Complaints.API.Application
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(LoggingBehavior<,>));
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestPerformanceBehavior<,>));
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(UnhandledExceptionBehavior<,>));
+            services.AddScoped<IComplaintQueries, ComplaintQueries>();
 
             return services;
         }
