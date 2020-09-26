@@ -7,20 +7,12 @@ namespace Azakaw.Complaints.API.Application.Commands
 {
     public class CreateComplaintCommand : IRequest<Guid>
     {
-        private readonly List<ComplaintItemDto> _complaintItems;
-
         public CreateComplaintCommand()
         {
-            _complaintItems = new List<ComplaintItemDto>();
+            ComplaintItems = new List<ComplaintItemDto>();
         }
 
-        public CreateComplaintCommand(string name, List<ComplaintItemDto> complaintItems)
-        {
-            Name = name;
-            _complaintItems = complaintItems;
-        }
-
-        public IEnumerable<ComplaintItemDto> ComplaintItems => _complaintItems;
-        public string Name { get; private set; }
+        public IEnumerable<ComplaintItemDto> ComplaintItems { get; set; }
+        public string Name { get; set; }
     }
 }
