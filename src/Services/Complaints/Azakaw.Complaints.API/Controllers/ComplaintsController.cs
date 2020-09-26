@@ -20,6 +20,7 @@ namespace Azakaw.Complaints.API.Controllers
             _complaintQueries = complaintQueries;
         }
 
+        //[Authorize(Policy = Application.Authorization.Policies.ComplaintWrite)]
         [HttpPost("", Name = nameof(CreateComplaint))]
         public async Task<ActionResult> CreateComplaint([FromBody] CreateComplaintCommand createComplaintCommand, ApiVersion apiVersion)
         {
@@ -28,10 +29,13 @@ namespace Azakaw.Complaints.API.Controllers
             return CreatedAtAction(nameof(GetComplaint), new { complaintId = newComplaintId, version = apiVersion.ToString() }, new { id = newComplaintId });
         }
 
+        //[Authorize(Policy = Application.Authorization.Policies.ComplaintRead)]
         [HttpGet("{complaintId}", Name = nameof(GetComplaint))]
         public async Task<ActionResult> GetComplaint(Guid complaintId)
         {
             var cashbackRequest = await _complaintQueries.GetComplaintByIdAsync(complaintId);
+
+            // TODO(abhith): personal authorization check. i.e To make sure that the authorized user has access to this item.
 
             if (cashbackRequest == null)
             {

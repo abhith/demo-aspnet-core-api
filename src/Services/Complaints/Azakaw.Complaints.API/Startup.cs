@@ -119,6 +119,40 @@ namespace Azakaw.Complaints.API
 
         public static IServiceCollection AddCustomAuthentication(this IServiceCollection services, IConfiguration configuration)
         {
+            // We can make use of identityserver, ASP.NET Core Identity or any other customer authentication handler to manage user authentication and authorization.
+            // I have an article on the same here https://www.abhith.net/blog/aspnet-core-using-multiple-authentication-schemes/
+
+            // A sample identityserver setup given below
+
+            //var identityUrl = configuration.GetValue<string>("Authentication:Sts:BaseUrl");
+
+            //services.AddAuthentication(options =>
+            //{
+            //    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+            //    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            //}).AddJwtBearer(options =>
+            //{
+            //    options.Authority = identityUrl;
+            //    options.RequireHttpsMetadata = false;
+            //    options.Audience = "complaints_api";
+            //});
+
+            //// Authorization
+            //services.AddAuthorization(options =>
+            //{
+            //    options.AddPolicy(Application.Authorization.Policies.ComplaintsRead, policy =>
+            //    {
+            //        policy.AuthenticationSchemes.Add(JwtBearerDefaults.AuthenticationScheme);
+            //        policy.RequireClaim("scope", Application.Authorization.Policies.ComplaintsRead);
+            //    });
+
+            //    options.AddPolicy(Application.Authorization.Policies.ComplaintsWrite, policy =>
+            //    {
+            //        policy.AuthenticationSchemes.Add(JwtBearerDefaults.AuthenticationScheme);
+            //        policy.RequireClaim("scope", Application.Authorization.Policies.ComplaintsWrite);
+            //    });
+
+            //});
 
             return services;
         }
