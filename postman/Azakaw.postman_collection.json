@@ -1,0 +1,200 @@
+{
+	"info": {
+		"_postman_id": "73686304-5b16-4416-a77e-983bd68c50f1",
+		"name": "Azakaw",
+		"description": "Complaints API\n\nContact Support:\n Name: Abhith Rajan\n Email: abhith@pm.me",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Complaints",
+			"item": [
+				{
+					"name": "Complaints",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "aaa856d2-4816-4401-a027-8b60bffd0fe5",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "4b403adb-3834-4190-a1d3-c868de8cf0c4",
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"var jsonData = JSON.parse(responseBody);\r",
+									"pm.environment.set(\"complaintId\", jsonData.id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Demo Complaint\",\r\n    \"complaintItems\": [\r\n        {\r\n            \"description\": \"Some description\",\r\n            \"title\": \"Title 1\"\r\n        },\r\n        {\r\n            \"description\": \"Some description\",\r\n            \"title\": \"Title 2\"\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "{{azakaw_api_base_url}}/v1/complaints",
+							"host": [
+								"{{azakaw_api_base_url}}"
+							],
+							"path": [
+								"v1",
+								"complaints"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/Complaints?api-version=1.0",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"Complaints"
+									],
+									"query": [
+										{
+											"key": "api-version",
+											"value": "1.0"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "Get Complaint",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{azakaw_api_base_url}}/v1/complaints/{{complaintId}}",
+							"host": [
+								"{{azakaw_api_base_url}}"
+							],
+							"path": [
+								"v1",
+								"complaints",
+								"{{complaintId}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/Complaints/:complaintId?api-version=1.0",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"Complaints",
+										":complaintId"
+									],
+									"query": [
+										{
+											"key": "api-version",
+											"value": "1.0"
+										}
+									],
+									"variable": [
+										{
+											"key": "complaintId"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "fb0b9c65-46b8-4a4e-bfbe-225f94fbfb0c",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "d66e50af-d7f2-4bdf-86b1-2e9b078d2f30",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "dde2202c-03ee-40c5-aa05-8985b1ff2a9f",
+			"key": "azakaw_api_base_url",
+			"value": "http://localhost:5000"
+		}
+	],
+	"protocolProfileBehavior": {}
+}
