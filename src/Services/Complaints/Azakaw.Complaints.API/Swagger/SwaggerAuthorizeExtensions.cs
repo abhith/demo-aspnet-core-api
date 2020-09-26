@@ -1,5 +1,4 @@
-﻿using Campaigns.API.Swagger;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 
 namespace Azakaw.Complaints.API.Swagger
 {
