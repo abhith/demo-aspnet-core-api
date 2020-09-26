@@ -16,7 +16,7 @@ namespace Azakaw.Complaints.Infrastructure.Repositories
 
         public Task<Guid> AddAsync(Complaint complaint)
         {
-            _logger.LogInformation("Persisting complaint to DB happens here");
+            _logger.LogInformation("Persisting complaint {@Complaint} to DB happens here", complaint);
 
             // TODO(abhith): DB implementation
 

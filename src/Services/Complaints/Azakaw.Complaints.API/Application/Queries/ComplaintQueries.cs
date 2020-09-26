@@ -18,7 +18,7 @@ namespace Azakaw.Complaints.API.Application.Queries
 
         public Task<ComplaintResult> GetComplaintByIdAsync(Guid id)
         {
-            _logger.LogInformation("Reading from DB happens here");
+            _logger.LogInformation("Reading complaint from DB happens here({ComplaintId})", id);
             // TODO(abhith): read from DB
 
             var output = new ComplaintResult
