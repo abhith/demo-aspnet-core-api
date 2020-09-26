@@ -1,5 +1,6 @@
 using System.IO;
 using System.Reflection;
+using Azakaw.Complaints.API.Application;
 using Azakaw.Complaints.API.Swagger;
 using Azakaw.Complaints.Infrastructure;
 using Code.Library.AspNetCore;
@@ -53,7 +54,7 @@ namespace Azakaw.Complaints.API
                     // build a swagger endpoint for each discovered API version
                     foreach (var description in provider.ApiVersionDescriptions)
                     {
-                        options.SwaggerEndpoint($"./swagger/{description.GroupName}/swagger.json", description.GroupName.ToUpperInvariant());
+                        options.SwaggerEndpoint($"/swagger/{description.GroupName}/swagger.json", description.GroupName.ToUpperInvariant());
                     }
                 });
 
