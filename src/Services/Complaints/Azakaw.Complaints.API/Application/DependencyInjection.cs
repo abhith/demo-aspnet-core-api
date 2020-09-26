@@ -1,9 +1,10 @@
 ﻿using System.Reflection;
-using Microsoft.Extensions.DependencyInjection;
+using Azakaw.Complaints.API.Application.Queries;
 using Code.Library.Application.Behaviors;
 using MediatR;
+using Microsoft.Extensions.DependencyInjection;
 
-namespace Azakaw.Complaints.Infrastructure
+namespace Azakaw.Complaints.API.Application
 {
     public static class DependencyInjection
     {
